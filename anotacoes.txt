@@ -1,0 +1,7 @@
+============= JPA ====================
+Especificacao de Persistencia oficial do Java
+
+ORM: frameworks de MApeamento Objto-ralcional
+Hibernate eh a implementacao oficial da JPA2
+
+impedance mismatch: Termo usado para aincompatibilidade objeto-relacional
