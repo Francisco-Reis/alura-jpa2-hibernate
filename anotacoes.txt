@@ -5,3 +5,51 @@ ORM: frameworks de MApeamento Objto-ralcional
 Hibernate eh a implementacao oficial da JPA2
 
 impedance mismatch: Termo usado para aincompatibilidade objeto-relacional
+
+Para conectar no DB com o hibernate precisamos:
+-biblioteca Hibernate
+-biblioteca JPA
+-driver do DB
+
+Arquivo 'persistence.xml':
+Contem as configuracoes do Hibernate
+O arquivo persistence.xml fica dentro da pasta src/META-INF
+
+Atributo 'hibernate.hbm2ddl.auto':
+validate: valida o esquema mas não faz mudanças no banco de dados.
+update: cria e atualiza o esquema no banco de dados preservando dados anteriores.
+create: cria o esquema destruindo dados anteriores.
+create-drop: remove o esquema no final da sessão.
+
+Mostrar SQL do Hibernate:
+<property name="hibernate.show_sql" value="true" />
+
+hibernate.dialect: Escreve o SQL de acordo com o DB escolhido
+
+Annotations Hibernate:
+@Entity: classe -> tabela
+@Id: PK
+@GeneratedValue: Auto-incremental, junto a PK
+---------
+@Entity
+public class Conta {
+
+    @Id @GeneratedValue
+    private Integer id;
+
+}
+---------
+
+Config MySQL para nao subir no startup:
+---------------------
+Open the terminal: Ctrl+Alt+T
+Open the mysql.conf file: sudo gedit /etc/init/mysql.conf
+Comment out the "start on" line near the top of the file, the "start on" might be spread across two lines, so comment out both. (comment adding # at the beginning)
+If you want to manually start mysql, use the following command:
+service mysql start
+---------------------
+
+Annotation: @SequenceGenerator(name = "SEQ_CONTAS", sequenceName = "SEQ_CONTAS", initialValue = 1)
+Cria Sequencia
+@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_CONTAS")
+Auto-increment com sequencia
