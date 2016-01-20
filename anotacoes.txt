@@ -53,3 +53,29 @@ Annotation: @SequenceGenerator(name = "SEQ_CONTAS", sequenceName = "SEQ_CONTAS",
 Cria Sequencia
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_CONTAS")
 Auto-increment com sequencia
+
+Estado JPA: 'managed'
+Os objetos que ficam nesse estado estao sincronizados com o BD
+Sendo assim, alterando o objeto no Java, o registro correspondente sofrera update no BD
+Objetos se tornam 'managed' ao chamar o metodo persist, find, etc
+O estado 'managed' existe enquanto o EntityManager estiver aberto.
+Um objeto que estava 'managed' e que continua existindo depois do fechamento da EntityManager esta em estado 'Detached'
+
+Estado JPA: 'transient'
+Objeto que ainda nao est'a sincronisado com o BD
+Se torna sincronizado 'managed', quando o metodo persist eh chamado
+
+Estado JPA: 'detached'
+Objeto existe e registro existe e ao sincronizar os dois estao diferentes.
+Usando o metodo merge, eh feita a sincronia e o registro do BD eh atualizado.
+A partir dai o objeto volta a ser 'managed'
+
+Estado JPA: 'removed'
+Objeto cujo registro foi removido do BD
+O objeto precisa estar no estado 'managed' para ser removido.
+
+Principais metodos EntityManager:
+-persist
+-find
+-merge
+-remove
