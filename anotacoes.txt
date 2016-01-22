@@ -79,3 +79,15 @@ Principais metodos EntityManager:
 -find
 -merge
 -remove
+
+Annotation: @Enumerated(EnumType.STRING)
+Mapeia um enum para um tipo enum no MySQL
+Annotation: @Temporal(TIMESTAMP)
+Mapeia um Calemdar para um Timestamp
+Annotation: @ManyToOne
+Cardinalidade de um objeto pra outro
+
+As classe Entity precisam estar no 'persistence.xml'
+-----------------------
+<class>br.com.caelum.financas.modelo.Movimentacao</class>
+-----------------------
