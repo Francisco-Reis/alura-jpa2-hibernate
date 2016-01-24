@@ -91,3 +91,20 @@ As classe Entity precisam estar no 'persistence.xml'
 -----------------------
 <class>br.com.caelum.financas.modelo.Movimentacao</class>
 -----------------------
+
+LINUX: Vericicar os servicos rodando: 'service --status-all'
+
+----JPQL----
+Linguagem similar ao SQL mesclado ao Java. Os acessos sao feitos visando objetos
+e nao tabelas.
+
+Metodo createQuery(...): Retorna objeto javax.persistence.Query
+
+Positional parameter notation: where x = ?1
+Named parameter notation:      where x = :paramX
+
+Exemplo JPQL trazer todas as movimentacoes de Saida:
+select m from Movimentacao m where m.tipoMovimentacao='SAIDA'
+
+Exemplo buscando info em outro objeto (buscando por nome do titular):
+select m from Movimentacao m where m.conta.titular like :pTitular and m.tipoMovimentacao = 'SAIDA'
