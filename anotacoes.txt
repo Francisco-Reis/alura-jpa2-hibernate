@@ -108,3 +108,27 @@ select m from Movimentacao m where m.tipoMovimentacao='SAIDA'
 
 Exemplo buscando info em outro objeto (buscando por nome do titular):
 select m from Movimentacao m where m.conta.titular like :pTitular and m.tipoMovimentacao = 'SAIDA'
+
+Comportamento LAZY (padrao):
+Nao faz join, faz multplas consusltas, uma para cada linha retornada.
+Comportamento EAGER:
+Faz o join como no SQL
+Ex de uso EAGER forcado sob demanda:
+Query query = manager.createQuery("select c from Conta c join fetch c.movimentacoes where c.id = :pId");
+
+Annotation: @OneToMany
+Cria uma tabela auxiliar com o relacionamento entre os objetos
+@OneToMany(mappedBy="x")
+Cria um relacionamento bilateral com o elemento x da outra classe, eleminando a tabela auxiliar
+
+Metodo getSingleResult()
+Retorna valor escalar.
+
+TypedQuery: Define o tipo de retorno dos escalares.
+Ex: TypedQuery<OUTROTIPO> query = manager.createQuery(jpql, OUTROTIPO.class);
+
+Annotation: @NamedQuery
+Tira o JPQL do c'odigo e deixa armazenado no anotation
+EX: @NamedQuery(name="mediaDaContaPeloTipoMovimentacao",
+    query="select avg(m.valor) from Movimentacao m where m.conta=:pConta "
+            + " and m.tipoMovimentacao = :pTipo")
